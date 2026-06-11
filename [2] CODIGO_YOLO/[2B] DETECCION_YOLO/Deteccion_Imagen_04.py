@@ -1,0 +1,46 @@
+from ultralytics import YOLO
+import os
+import cv2
+
+# deteccion de objetos, con open CV, de un video, desde un directorio dado
+# se usa los parametros del propio modelo para identificar
+
+# Obtener el directorio actual del script
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Ruta local al modelo YOLO
+model_path = os.path.join(script_dir, "yolo11n.pt")
+
+# cargar modelo YOLO 11 nano pt(deteccion)
+model = YOLO(model_path)
+
+# path de la imagen donde se aplicara la deteccion
+print("Ruta: ",script_dir)
+#video_path="./MODELO_YOLO/Imagen_Deteccion/video.mp4"
+video_path=os.path.join(script_dir, "Imagen_Deteccion", "video_2.mp4")
+
+#cargamos el video de la ruta asignada
+cap=cv2.VideoCapture(video_path)
+
+while cap.isOpened():
+    # leemos el frame del video
+    ret, frame=cap.read()
+    if not ret:
+        break
+
+    # realizamos la inferencia de YOLO sobre el frame
+    results=model(frame)
+
+    # extraemos los resultados
+    annotated_frame=results[0].plot()
+    #print(annotated_frame)
+
+    # visualizamos los resultados
+    cv2.imshow("Deteccion de Objetos [4] - Presiona 'q' para Salir",annotated_frame)
+
+    # el ciclo se rompe al presionar ESC
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()

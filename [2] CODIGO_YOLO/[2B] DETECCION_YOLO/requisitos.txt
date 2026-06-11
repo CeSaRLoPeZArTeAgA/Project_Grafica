@@ -1,0 +1,6 @@
+La instalación oficial de Ultralytics para cargar el modelo de YOLO, usar el siguiento comando en PowerShell: 
+
+& "C:/Users/Usuario/AppData/Local/Python/pythoncore-3.14-64/python.exe" -m pip install -U ultralytics
+
+Si ya se tiene un entorno de trabajo, levantar el entorno y en ella instalar:
+python -m pip install -U ultralytics
