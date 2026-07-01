@@ -1,0 +1,23 @@
+Estando en la raspberry pi 4B, primero crear el entorno virual, activar el entorno
+luego instalar las dependencias para que corran los programas. Se creara previamente
+una carpeta Grafica, en ella se trabajara todos los archivos.
+
+[0] Creacion carpeta
+mkdir Grafica
+
+[1] Creacion de entorno virtual
+cd ~/Grafica
+
+sudo apt update
+sudo apt install -y python3-full python3-venv python3-pip wget
+
+python3 -m venv .venv --system-site-packages
+source .venv/bin/activate
+
+[2] Instalacion de dependencias dentro del entorno virtual
+
+python -m pip install --upgrade pip
+python -m pip install numpy opencv-python onnxruntime ultralytics
+
+
+
